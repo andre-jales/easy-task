@@ -12,7 +12,7 @@ import { Tasks } from './tasks/tasks';
 })
 export class App {
   users = signal(DUMMY_USERS);
-  selectedUserId = signal('u1');
+  selectedUserId = signal<string | undefined>(undefined);
 
   selectedUser = computed(() => {
     return this.users().find((user) => user.id === this.selectedUserId())!;

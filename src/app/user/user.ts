@@ -1,21 +1,25 @@
 import { Component, computed, EventEmitter, input, output } from '@angular/core';
 
+interface IUser {
+  id: string;
+  avatar: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
 export class User {
-  id = input.required<string>();
-  avatar = input.required<string>();
-  name = input.required<string>();
+  user = input.required<IUser>();
   select = output<string>();
 
   imagePath = computed(() => {
-    return 'users/' + this.avatar();
+    return 'users/' + this.user().avatar;
   });
 
   onSelectUser() {
-    this.select.emit(this.id());
+    this.select.emit(this.user().id);
   }
 }
